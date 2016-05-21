@@ -12,7 +12,7 @@ class Ship extends Phaser.Sprite {
 		this.game.physics.enable(this, Phaser.Physics.ARCADE);
         this.body.collideWorldBounds = true;
 
-		this.health = 100;
+		this.health = 20;
 		this.bulletTime = 0;
 		this.bulletSpeed = 400;
 		this.bulletDelay = 200;
@@ -50,7 +50,7 @@ class Ship extends Phaser.Sprite {
 		let bullet;
 		let bulletSpeed = leftHand ? -this.bulletSpeed : this.bulletSpeed;
 
-		if(this.game.time.now > this.bulletTime) {
+		if(this.game.time.now > this.bulletTime && this.alive) {
 			bullet = this.sidegun.getFirstExists(false);
 
 			if(bullet) {
@@ -81,13 +81,19 @@ class Ship extends Phaser.Sprite {
     }
 
 	hit() {
-		let boom = new Boom(this.game, this.x, this.y);
 		this.health -= 10;
-
 		updateHealth(this.health);
 
+		if(this.health > 0) {
+			let boom = new Boom(this.game, this.x, this.y, 'boomSmall');
+		}
+
 		if(this.health <= 0) {
-			this.game.state.start('gameover');
+			this.kill();
+
+			let boom = new Boom(this.game, this.x, this.y, 'boom', () => {
+				this.game.state.start('gameover');
+			});
 		}
 	}
 

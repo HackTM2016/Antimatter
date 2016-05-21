@@ -26,15 +26,15 @@ const game = new Game();
 
 // @mrdoob Stat.js
 
-// const stats = new Stats();
-// stats.showPanel(0);
+const stats = new Stats();
+stats.showPanel(0);
 
-// document.body.appendChild(stats.dom);
+document.body.appendChild(stats.dom);
 
-// const animate = () => {
-//     stats.begin();
-//     stats.end();
-//     requestAnimationFrame(animate);
-// }
+const animate = () => {
+    stats.begin();
+    stats.end();
+    requestAnimationFrame(animate);
+}
 
-// requestAnimationFrame(animate);
+requestAnimationFrame(animate);

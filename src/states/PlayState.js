@@ -1,7 +1,7 @@
 import Ship from 'objects/Ship';
 import Foes from 'objects/Foes';
 import Bullets from 'objects/Bullets';
-import Starfield from 'objects/Starfield';
+import Background from 'objects/Background';
 import Controller from 'controllers/Controller';
 
 import {
@@ -26,11 +26,12 @@ class PlayState extends Phaser.State {
         this.game.world._definedSize = true;
 
         // stars
-        this.starfield = new Starfield(this.game);
+        this.starfield = new Background(this.game, 'starfield', 2);
+        this.nebula = new Background(this.game, 'nebula', 1);
 
         // gun
-        this.shipFrontgun = new Bullets(this.game, 'bullet');
-        this.shipSidegun = new Bullets(this.game, 'enemyBullet');
+        this.shipFrontgun = new Bullets(this.game, 'shipFrontBullet');
+        this.shipSidegun = new Bullets(this.game, 'shipSideBullet');
         this.foesGun = new Bullets(this.game, 'enemyBullet');
 
         // ship
@@ -45,10 +46,11 @@ class PlayState extends Phaser.State {
 
     update() {
 
-
 		console.debug(`childrens: ${this.foes.children.length}`, `score: ${stats.score}`);
 
-        updateWaveTime(this.game.time.events.duration);
+        //this.ship.frontFire();
+
+        //updateWaveTime(this.game.time.events.duration);
 
         // check foe position
         this.foes.forEach((foe, index) => {
@@ -58,10 +60,11 @@ class PlayState extends Phaser.State {
 
         // update stars
         this.starfield.move();
+        this.nebula.move();
 
         // collisions
         this.game.physics.arcade.overlap([this.shipFrontgun, this.shipSidegun], this.foes, handleFoeKill, null);
-        this.game.physics.arcade.overlap([this.shipFrontgun, this.shipSidegun], this.foesGun, handleBulletCollision, null);
+        //this.game.physics.arcade.overlap([this.shipFrontgun, this.shipSidegun], this.foesGun, handleBulletCollision, null);
         this.game.physics.arcade.overlap(this.foesGun, this.ship, handleShipHit, null);
         this.game.physics.arcade.overlap(this.foes, this.ship, handleFoeShipCollision, null);
     }
