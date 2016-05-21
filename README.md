@@ -1,6 +1,6 @@
 # #hackTM2016
 
-:alien: Classic arcade space shooter game based on [Phaser.io](http://phaser.io)
+:alien: Classic arcade space shooter game.
 
   1. `git clone https://github.com/balajmarius/hackTM2016.git && cd hackTM2016`
   2. `npm install`
@@ -10,6 +10,7 @@
 #### :zap: Dependencies
 
   - Phaser
+  - Leap.js
   - Babel (ES2015)
   - Browserify
   - Gulp
