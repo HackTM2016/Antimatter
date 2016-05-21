@@ -9,7 +9,7 @@ class Foe extends Phaser.Sprite {
         const x = game.rnd.integerInRange(0, size.width);
         const y = game.rnd.integerInRange(-300, 0);
 
-        super(game, x, y, 'foe');
+        super(game, x, y, 'foeSecond');
 
         this.game.physics.enable(this, Phaser.Physics.ARCADE);
         this.checkWorldBounds = true;

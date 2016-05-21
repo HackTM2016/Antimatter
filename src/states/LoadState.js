@@ -21,6 +21,7 @@ class LoadState extends Phaser.State {
 		this.game.load.spritesheet('shipSideBullet', 'img/ship-side-bullet.png', 20, 20, 5);
 		this.game.load.spritesheet('ship', 'img/ship.png', 80, 80);
 		this.game.load.spritesheet('foe', 'img/foe.png', 60, 60, 59);
+		this.game.load.spritesheet('foeSecond', 'img/foe-second.png', 100, 100, 59);
 		this.game.load.spritesheet('enemyBullet', 'img/foe-bullet.png', 20, 20);
 		this.game.load.spritesheet('boom', 'img/boom.png', 250, 230);
 		this.game.load.spritesheet('boomSmall', 'img/boom-small.png', 250, 230, 22);
