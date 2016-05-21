@@ -1,0 +1,94 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#game {
+    position: relative;
+}
+
+.crt {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: -webkit-repeating-linear-gradient(top, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 4px);
+    background: repeating-linear-gradient(top, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 4px);
+    background-size: 100% 4px;
+    z-index: 99999;
+    animation: crt 5ms infinite;
+}
+
+.stats {
+    position: absolute;
+    font-family: VT323;
+    text-transform: uppercase;
+    ;
+    font-weight: bold;
+    font-size: 38px;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+    left: 30px;
+    top: 30px;
+}
+
+.stats li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    animation: blur 30ms infinite, flick 50ms infinite, jump 50ms infinite;
+}
+
+.stats strong {
+    text-shadow: 2px 3px #008000, -1px -3px #FF0000;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+@keyframes crt {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes blur {
+    0% {
+        filter: blur(1px);
+        opacity: 0.8;
+    }
+    50% {
+        filter: blur(1px);
+        opacity: 1;
+    }
+    100% {
+        filter: blur(1px);
+        opacity: 0.8;
+    }
+}
+
+@keyframes flick {
+    50% {
+        left: 2px;
+    }
+    51% {
+        left: 0;
+    }
+}
+
+@keyframes jump {
+    30% {
+        top: 10px;
+    }
+    31% {
+        top: 0;
+    }
+}
