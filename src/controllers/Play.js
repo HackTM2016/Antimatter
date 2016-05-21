@@ -74,6 +74,7 @@ class Controller extends Leap.Controller {
 
         let screenPosition = hand.screenPosition();
         let [ x, y, z ] = screenPosition;
+        let realZ = Math.abs(z).toFixed();
 
         this.rotation = Math.floor(hand.roll() * (180 / Math.PI));
         this.ship.x = x - (size.width/2);

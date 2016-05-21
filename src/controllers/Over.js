@@ -43,6 +43,7 @@ class Controller extends Leap.Controller {
                                     restartScore();
                                     updateScore(stats.score);
                                     updateHealth(100);
+                                    document.querySelector('.highscore').style.display = 'none';
                                     this.state.game.state.start('play');
                                 }
                             });

@@ -78,6 +78,29 @@ body {
     -webkit-filter: blur(1px);
 }
 
+.highscore {
+    position: absolute;
+    font-family: VT323;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 84px;
+    color: #ffffff;
+    display: none;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    top: 40%;
+    text-align: center;
+}
+
+.highscore span {
+    animation: blur 30ms infinite, flick 50ms infinite, jump 50ms infinite;
+    text-shadow: 2px 3px #008000, -1px -3px #FF0000;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
 @keyframes crt {
     0% {
         opacity: 0.8;

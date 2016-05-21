@@ -10,6 +10,10 @@ class OverState extends Phaser.State {
         this.steps.anchor.setTo(0.5, 1);
 
         this.controller = new Controller(this);
+
+        let highscore = document.getElementById('highscore');
+        highscore.innerText = stats.score;
+        document.querySelector('.highscore').style.display = 'block';
     }
 
     shutdown() {
