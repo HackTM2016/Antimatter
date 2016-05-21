@@ -54,7 +54,7 @@ class Controller extends Leap.Controller {
         if (hand.grabStrength >= .5) {
 
             if(this.rotation <= -30) {
-                this.ship.sideFire(false);
+                this.ship.sideFire();
             }
 
             if(this.rotatation > -30 || this.rotation < 30) {
@@ -62,7 +62,7 @@ class Controller extends Leap.Controller {
             }
 
             if(this.rotation >= 30) {
-                this.ship.sideFire();
+                this.ship.sideFire(false);
             }
 
         }

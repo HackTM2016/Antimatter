@@ -53,7 +53,7 @@ class Foe extends Phaser.Sprite {
 
         const handleOutOfBounds = () => {
             this.destroy();
-            stats.score--;
+            stats.score -= 100;
             // update score
             updateScore();
         }

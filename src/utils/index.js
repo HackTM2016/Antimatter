@@ -1,8 +1,11 @@
-export const size = { width: window.innerWidth, height: window.innerHeight };
+export const size = { width: 910, height: 910 };
 
 export const stats = { level: 0, score: 0 };
 
 export const handleFoeKill = (bullet, foe) => {
+
+    stats.score += 1000;
+
     bullet.kill();
     foe.die();
 };
@@ -35,4 +38,9 @@ export const updateHealth = (shipHealth) => {
 export const updateWaveTime = (time) => {
 	let nextwave = document.getElementById('nextwave');
 	nextwave.innerText = time;
+};
+
+export const restartScore = () => {
+    stats.level = 0;
+    stats.score = 0;
 };

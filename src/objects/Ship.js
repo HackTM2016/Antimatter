@@ -12,7 +12,7 @@ class Ship extends Phaser.Sprite {
 		this.game.physics.enable(this, Phaser.Physics.ARCADE);
         this.body.collideWorldBounds = true;
 
-		this.health = 20;
+		this.health = 100;
 		this.bulletTime = 0;
 		this.bulletSpeed = 400;
 		this.bulletDelay = 200;

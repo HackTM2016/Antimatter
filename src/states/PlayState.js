@@ -2,7 +2,7 @@ import Ship from 'objects/Ship';
 import Foes from 'objects/Foes';
 import Bullets from 'objects/Bullets';
 import Background from 'objects/Background';
-import Controller from 'controllers/Controller';
+import Controller from 'controllers/Play';
 
 import {
     size,
@@ -50,7 +50,7 @@ class PlayState extends Phaser.State {
 
         //this.ship.frontFire();
 
-        //updateWaveTime(this.game.time.events.duration);
+        updateWaveTime(this.game.time.events.duration);
 
         // check foe position
         this.foes.forEach((foe, index) => {
@@ -67,6 +67,11 @@ class PlayState extends Phaser.State {
         //this.game.physics.arcade.overlap([this.shipFrontgun, this.shipSidegun], this.foesGun, handleBulletCollision, null);
         this.game.physics.arcade.overlap(this.foesGun, this.ship, handleShipHit, null);
         this.game.physics.arcade.overlap(this.foes, this.ship, handleFoeShipCollision, null);
+    }
+
+
+    shutdown() {
+        this.controller.disconnect();
     }
 
 }

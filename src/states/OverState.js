@@ -1,26 +1,19 @@
-import { stats } from 'utils/index';
+import Controller from 'controllers/Over';
+import { stats, size } from 'utils/index';
 
 
 class OverState extends Phaser.State {
 
     create() {
 
-        console.log(`${this.game.time.now} - game over`, stats)
+        this.steps = this.game.add.sprite(this.game.world.centerX, size.height, 'playAgain');
+        this.steps.anchor.setTo(0.5, 1);
 
-        const style = { font: '65px Helvetica', fill: '#ffffff', align: 'center' };
-        const x = this.game.world.centerX;
-        const y = this.game.world.centerY;
+        this.controller = new Controller(this);
+    }
 
-        const { level, score } = stats;
-
-
-        const text = [`You died!!!`,
-            `Waves: ${level}`,
-            `Score: ${score}`
-        ].join('\n');0
-
-
-        this.game.add.text(x, y, text, style).anchor.set(0.5);
+    shutdown() {
+        this.controller.disconnect();
     }
 }
 
