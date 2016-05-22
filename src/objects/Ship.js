@@ -38,7 +38,7 @@ class Ship extends Phaser.Sprite {
 			bullet = this.frontgun.getFirstExists(false);
 
 			if(bullet) {
-				bullet.reset(this.x, this.y);
+				bullet.reset(this.x + this.game.rnd.between(-10, 10), this.y);
 				bullet.body.velocity.y = -this.bulletSpeed;
             	this.bulletTime = this.game.time.now + this.bulletDelay;
 			}
@@ -54,7 +54,7 @@ class Ship extends Phaser.Sprite {
 			bullet = this.sidegun.getFirstExists(false);
 
 			if(bullet) {
-				bullet.reset(this.x, this.y);
+				bullet.reset(this.x, this.y + this.game.rnd.between(-10, 10));
 				bullet.body.velocity.x = bulletSpeed;
 				this.bulletTime = this.game.time.now + this.bulletDelay;
 			}

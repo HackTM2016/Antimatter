@@ -6,10 +6,14 @@ class Foe extends Phaser.Sprite {
 
     constructor(game, gun, ship) {
 
+        // generate some random foes
+        let foes = ['foe', 'foeSecond'];
+        let foe = foes[game.rnd.between(0, 1)];
+
         const x = game.rnd.integerInRange(0, size.width);
         const y = game.rnd.integerInRange(-300, 0);
 
-        super(game, x, y, 'foeSecond');
+        super(game, x, y, foe);
 
         this.game.physics.enable(this, Phaser.Physics.ARCADE);
         this.checkWorldBounds = true;

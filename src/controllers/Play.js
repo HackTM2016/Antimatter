@@ -10,6 +10,7 @@ class Controller extends Leap.Controller {
 
         this.ship = ship;
         this.rotation = 0;
+        this.direction = 'up';
 
         this.connect();
 
@@ -34,7 +35,7 @@ class Controller extends Leap.Controller {
                 let gestures = frame.gestures;
 
                 hands.forEach(hand => {
-                    if(hand.valid) {
+                    if (hand.valid) {
                         if (hand.type === 'right') {
                             this.handleMove(hand);
                         }
@@ -53,31 +54,42 @@ class Controller extends Leap.Controller {
 
         if (hand.grabStrength >= .5) {
 
-            if(this.rotation <= -30) {
-                this.ship.sideFire();
-            }
+            switch (true) {
+                case this.rotation <= -30:
+                    this.ship.sideFire();
+                    if (this.direction !== 'left' && this.direction !== 'up') {
+                        this.direction = 'left';
+                        this.ship.play('flyLeft');
+                    }
+                    break;
 
-            if(this.rotatation > -30 || this.rotation < 30) {
-                this.ship.frontFire();
-            }
+                case this.rotation >= 30:
+                    this.ship.sideFire(false);
+                    if (this.direction !== 'right') {
+                        this.direction = 'right';
+                        this.ship.play('flyRight');
+                    }
+                    break;
 
-            if(this.rotation >= 30) {
-                this.ship.sideFire(false);
+                case this.rotation < 30:
+                case this.rotation > -30:
+                    this.ship.frontFire();
+                    this.direction = 'up';
+                    this.ship.frame = 0;
+                    break;
             }
-
         }
-
     }
 
 
     handleMove(hand) {
 
         let screenPosition = hand.screenPosition();
-        let [ x, y, z ] = screenPosition;
+        let [x, y, z] = screenPosition;
         let realZ = Math.abs(z).toFixed();
 
         this.rotation = Math.floor(hand.roll() * (180 / Math.PI));
-        this.ship.x = x - (size.width/2);
+        this.ship.x = x - size.width;
     }
 }
 
