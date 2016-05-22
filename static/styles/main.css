@@ -6,9 +6,10 @@ body {
 }
 
 #game {
-    position: relative;
+    position: absolute;
     width: 910px;
-    margin: 0 auto;
+    left: 50%; top: 50%;
+    transform: translateY(-50%) translateX(-50%);
     background: url('../img/starfield.png') repeat;
 }
 
