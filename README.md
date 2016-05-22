@@ -2,7 +2,7 @@
 
 :alien: Classic arcade space shooter game.
 
-  1. `git clone https://github.com/balajmarius/hackTM2016.git && cd hackTM2016`
+  1. `git clone https://github.com/HackTM2016/Antimatter.git && cd hackTM2016`
   2. `npm install`
   3. `gulp`
 
