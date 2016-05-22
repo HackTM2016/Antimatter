@@ -14,8 +14,8 @@ class TutorialState extends Phaser.State {
 	}
 
 	shutdown() {
-        this.controller.disconnect();
-    }
+      this.controller.disconnect();
+  }
 }
 
 export default TutorialState;

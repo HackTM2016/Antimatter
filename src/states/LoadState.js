@@ -3,13 +3,10 @@ class LoadState extends Phaser.State {
 	create() {
 		console.log(`${this.game.time.now} - start game`);
 
-		this.bar = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loading');
-        this.bar.anchor.setTo(0.5, 0.5);
+		this.logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
+    this.logo.anchor.setTo(0.5, 0.5);
 
-        this.bar.animations.add('glitch', 0, 4, false);
-        this.bar.play('glitch');
-
-		this.bar.animations.currentAnim.onComplete.add(() => { this.game.state.start('tutorial') });
+		this.timeout = setTimeout(() => { this.game.state.start('tutorial') }, Phaser.Timer.SECOND * 2);
 	}
 
 	preload() {
@@ -25,8 +22,8 @@ class LoadState extends Phaser.State {
 		this.game.load.image('nebula', 'img/nebula.png');
 		this.game.load.image('boss', 'img/boss.png');
 		this.game.load.image('playAgain', 'img/play-again.png');
+		this.game.load.image('logo', 'img/logo.png');
 		this.game.load.spritesheet('tutorial', 'img/tutorial.png', 500, 500, 4);
-		this.game.load.spritesheet('loading', 'img/loading.png', 500, 500, 4);
 		this.game.load.spritesheet('shipFrontBullet', 'img/ship-front-bullet.png', 15, 52, 5);
 		this.game.load.spritesheet('shipSideBullet', 'img/ship-side-bullet.png', 20, 20, 5);
 		this.game.load.spritesheet('ship', 'img/ship.png', 80, 80);
@@ -36,6 +33,11 @@ class LoadState extends Phaser.State {
 		this.game.load.spritesheet('boom', 'img/boom.png', 250, 230);
 		this.game.load.spritesheet('boomSmall', 'img/boom-small.png', 250, 230, 22);
 	}
+
+
+		shutdown() {
+	      clearTimeout(this.timeout);
+	  }
 
 }
 
