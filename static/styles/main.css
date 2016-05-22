@@ -54,7 +54,7 @@ body {
 
 .stats {
     position: absolute;
-    font-family: VT323;
+    font-family: VT323, monospace;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 38px;
@@ -80,7 +80,7 @@ body {
 
 .highscore {
     position: absolute;
-    font-family: VT323;
+    font-family: VT323, monospace;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 84px;
@@ -90,7 +90,7 @@ body {
     margin: 0;
     left: 0;
     right: 0;
-    top: 40%;
+    top: 30%;
     text-align: center;
 }
 

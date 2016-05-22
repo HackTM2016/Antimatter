@@ -6,7 +6,7 @@ class OverState extends Phaser.State {
 
     create() {
 
-        this.steps = this.game.add.sprite(this.game.world.centerX, size.height, 'playAgain');
+        this.steps = this.game.add.sprite(this.game.world.centerX, (size.height - 100), 'playAgain');
         this.steps.anchor.setTo(0.5, 1);
 
         this.controller = new Controller(this);

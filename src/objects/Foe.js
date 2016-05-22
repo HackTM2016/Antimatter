@@ -18,7 +18,6 @@ class Foe extends Phaser.Sprite {
         this.game.physics.enable(this, Phaser.Physics.ARCADE);
         this.checkWorldBounds = true;
 
-
         this.anchor.setTo(0.5, 0.5);
         this.animations.add('fly', 0, 59, 20, true);
         this.animations.getAnimation('fly').delay = 50;
@@ -32,10 +31,8 @@ class Foe extends Phaser.Sprite {
         this.ship = ship;
         this.gun = gun;
 
-
         this.body.velocity.x = this.game.rnd.integerInRange(-100, 100);
         this.body.velocity.y = this.game.rnd.integerInRange(this.minSpeed, this.maxSpeed);
-
 
         this.events.onEnterBounds.add(this.handleOnEnterBounds, this);
 

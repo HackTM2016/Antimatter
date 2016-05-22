@@ -54,29 +54,29 @@ class Controller extends Leap.Controller {
 
         if (hand.grabStrength >= .5) {
 
-            switch (true) {
-                case this.rotation <= -30:
-                    this.ship.sideFire();
-                    if (this.direction !== 'left' && this.direction !== 'up') {
-                        this.direction = 'left';
-                        this.ship.play('flyLeft');
-                    }
-                    break;
+            if (this.rotation <= -30) {
+                this.ship.sideFire();
 
-                case this.rotation >= 30:
-                    this.ship.sideFire(false);
-                    if (this.direction !== 'right') {
-                        this.direction = 'right';
-                        this.ship.play('flyRight');
-                    }
-                    break;
+                if (this.direction !== 'left') {
+                    this.direction = 'left';
+                    this.ship.play('flyLeft');
+                }
 
-                case this.rotation < 30:
-                case this.rotation > -30:
-                    this.ship.frontFire();
+            } else if (this.rotation >= 30) {
+                this.ship.sideFire(false);
+
+                if (this.direction !== 'right') {
+                    this.direction = 'right';
+                    this.ship.play('flyRight');
+                }
+
+            } else {
+                this.ship.frontFire();
+
+                if(this.direction !== 'up') {
                     this.direction = 'up';
                     this.ship.frame = 0;
-                    break;
+                }
             }
         }
     }
