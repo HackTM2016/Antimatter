@@ -1,5 +1,6 @@
 import Ship from 'objects/Ship';
 import Foes from 'objects/Foes';
+import Shield from 'objects/Shield';
 import Bullets from 'objects/Bullets';
 import Background from 'objects/Background';
 import Controller from 'controllers/Play';
@@ -9,9 +10,12 @@ import {
     stats,
     handleFoeKill,
     handleShipHit,
+    handleShieldHit,
     handleFoeShipCollision,
     handleBulletCollision,
-    updateWaveTime
+    updateWaveTime,
+    handleShield,
+    handleShieldCollision
 } from 'utils/index';
 
 
@@ -37,20 +41,22 @@ class PlayState extends Phaser.State {
         // ship
         this.ship = new Ship(this.game, size.width/2, (size.height - 50), this.shipFrontgun, this.shipSidegun);
 
+        // add shield
+        this.shield = new Shield(this.game, this.ship.x, this.ship.y-35);
+
         // foes
         this.foes = new Foes(this.game, this.foesGun, this.ship);
 
         // add controller
-        this.controller = new Controller(this.ship);
+        this.controller = new Controller(this.ship, this.shield);
     }
 
     update() {
 
-		console.debug(`childrens: ${this.foes.children.length}`, `score: ${stats.score}`);
-
         //this.ship.frontFire();
 
         updateWaveTime(this.game.time.events.duration);
+        handleShield(this.shield, this.game.time.now);
 
         // check foe position
         this.foes.forEach((foe, index) => {
@@ -66,6 +72,8 @@ class PlayState extends Phaser.State {
         this.game.physics.arcade.overlap([this.shipFrontgun, this.shipSidegun], this.foes, handleFoeKill, null);
         //this.game.physics.arcade.overlap([this.shipFrontgun, this.shipSidegun], this.foesGun, handleBulletCollision, null);
         this.game.physics.arcade.overlap(this.foesGun, this.ship, handleShipHit, null);
+        this.game.physics.arcade.overlap(this.foesGun, this.shield, handleShieldHit, null);
+        this.game.physics.arcade.overlap(this.foes, this.shield, handleShieldCollision, null);
         this.game.physics.arcade.overlap(this.foes, this.ship, handleFoeShipCollision, null);
     }
 

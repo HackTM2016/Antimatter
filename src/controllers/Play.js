@@ -5,10 +5,12 @@ import _ from 'lodash';
 
 class Controller extends Leap.Controller {
 
-    constructor(ship) {
+    constructor(ship, shield) {
         super({ enableGestures: true });
 
         this.ship = ship;
+        this.shield = shield;
+
         this.rotation = 0;
         this.direction = 'up';
 
@@ -90,6 +92,12 @@ class Controller extends Leap.Controller {
 
         this.rotation = Math.floor(hand.roll() * (180 / Math.PI));
         this.ship.x = x - size.width;
+        this.shield.x = x - size.width;
+
+        // activate shield
+        if(hand.grabStrength >= .5 && !this.shield.active) {
+            this.shield.activate();
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-import Boom from 'objects/Boom';
+import Boom from './Boom';
 import { updateHealth } from 'utils/index';
 
 
@@ -26,8 +26,6 @@ class Ship extends Phaser.Sprite {
 
 		// add ship to stage
 		this.game.world.addChild(this);
-
-
 	}
 
 	frontFire() {

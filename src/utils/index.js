@@ -26,21 +26,40 @@ export const handleBulletCollision = (enemyBullet, shipBullet) => {
 };
 
 export const updateScore = () => {
-	let score = document.getElementById('score');
-	score.innerText = stats.score;
+    let score = document.getElementById('score');
+    score.innerText = stats.score;
 };
 
 export const updateHealth = (shipHealth) => {
-	let health = document.getElementById('health');
-	health.innerText = shipHealth;
+    let health = document.getElementById('health');
+    health.innerText = shipHealth;
 };
 
 export const updateWaveTime = (time) => {
-	let nextwave = document.getElementById('nextwave');
-	nextwave.innerText = time;
+    let nextwave = document.getElementById('nextwave');
+    nextwave.innerText = time;
 };
 
 export const restartScore = () => {
     stats.level = 0;
     stats.score = 0;
+};
+
+export const handleShieldHit = (shield, bullet) => {
+    if (shield.active) {
+        shield.hit();
+        bullet.kill();
+    }
+};
+
+export const handleShieldCollision = (shield, foe) => {
+    if (shield.active) {
+        foe.die();
+    }
+};
+
+export const handleShield = (shield, now) => {
+    if (shield.active && shield.time + 3000 <= now) {
+        shield.deactivate();
+    }
 };
